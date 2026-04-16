@@ -21,6 +21,11 @@ public Flux<ServerSentEvent<String>> chat(int memoryId, String message) {
                     .build());
 }
 
+    @GetMapping("/test")
+public String test() {
+    return "你好，后端正常";
+}
+
     //Service 返回的通常只是 Flux<String>（普通数据）
     //Controller 才负责变成 SSE 格式（HTTP协议层）
 }
