@@ -10,10 +10,8 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowCredentials(true))//允许浏览器把 Cookie 带过去
-                .allowedOrigins(
-                        "https://content-ai-seven-delta.vercel.app"
-                )
+                .allowCredentials(true)
+                .allowedOrigins("https://content-ai-seven-delta.vercel.app")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("*");
