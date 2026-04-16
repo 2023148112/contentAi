@@ -13,7 +13,7 @@ public class CorsConfig implements WebMvcConfigurer{
                 .allowCredentials(true)//允许浏览器把 Cookie 带过去
                 .allowedOriginPatterns("*")
                 .allowedMethods("get", "post", "put", "delete", "head", "options")
-               .allowedOrigins("*")
+               .allowedOrigins("https://content-ai-seven-delta.vercel.app")
         /*每个方法什么意思：
         方法	含义
         GET	查数据
