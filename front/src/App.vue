@@ -209,9 +209,6 @@ export default {
       try {
         const response = await fetch(url, {
           method: 'GET',
-         const response = await fetch(url, {
-         method: 'GET'
-})
         })
 
         if (!response.ok) {
