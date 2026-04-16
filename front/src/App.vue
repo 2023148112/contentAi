@@ -206,13 +206,11 @@ export default {
       const chatId = currentChatId.value || generateChatId()
       const BASE_URL = 'https://contentai-production-0e73.up.railway.app'
       const url = `${BASE_URL}/api/myai/chat?memoryId=${chatId}&message=${encodeURIComponent(message)}`
-const response = await fetch(url, {
-  method: 'GET',
-  headers: {
-    'Accept': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive'
-  }
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+         const response = await fetch(url, {
+         method: 'GET'
 })
         })
 
