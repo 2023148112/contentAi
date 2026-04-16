@@ -17,6 +17,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.langchain4j.data.document.loader.ClassPathDocumentLoader;
+import dev.langchain4j.data.document.parser.TextDocumentParser;
+
 @Configuration
 public class RagConfig {
     @Resource
@@ -30,7 +33,10 @@ public class RagConfig {
     @Bean//定义：怎么“根据问题找相关内容”
     public ContentRetriever contentRetriever(EmbeddingStore<TextSegment> qwenTextSegmentStore) {
         //加载文档
-        List<Document> documents =FileSystemDocumentLoader.loadDocuments("src/main/resources/rag");
+            List<Document> documents = ClassPathDocumentLoader.loadDocuments(
+                "rag",
+                new TextDocumentParser()
+        );
 
         //文档切割 还未进行切割
         DocumentByParagraphSplitter documentByParagraphSplitter=new DocumentByParagraphSplitter(1000,200);
