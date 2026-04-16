@@ -13,8 +13,8 @@ public class AiController {
     private AiCodeService aiCodeService;
 
     @GetMapping("/chat")
-    public Flux<ServerSentEvent<String>> chat(int memoryid,String message) {
-     return aiCodeService.chatStream(memoryid, message).map(chunk-> ServerSentEvent.<String>builder()
+    public Flux<ServerSentEvent<String>> chat(int memoryId, String message) {
+     return aiCodeService.chatStream(memoryId, message).map(chunk-> ServerSentEvent.<String>builder()
              .data(chunk)
              .build());
     }

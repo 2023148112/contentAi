@@ -48,7 +48,7 @@
             :class="message.role"
         >
           <div class="message-avatar">
-            {{ message.role === 'user' ? '你' : '阳' }}
+            {{ message.role === 'user' ? '你' : '亲' }}
           </div>
           <div class="message-content" v-html="formatMessage(message.content)"></div>
         </div>

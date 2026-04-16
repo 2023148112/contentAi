@@ -11,5 +11,5 @@ public interface AiCodeService {
 
     //流式
     @SystemMessage(fromResource="demo.txt")
-    Flux<String> chatStream(@MemoryId int memoryid, @UserMessage String message);
+    Flux<String> chatStream(@MemoryId int memoryId, @UserMessage String message);
 }

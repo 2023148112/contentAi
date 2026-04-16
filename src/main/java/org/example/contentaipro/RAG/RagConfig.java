@@ -22,12 +22,13 @@ public class RagConfig {
     @Resource
     private EmbeddingModel qwenEmbeddingModel;
 
-    @Resource
-    private EmbeddingStore<TextSegment> qwenTextSegmentStore;
-
+    @Bean
+    public EmbeddingStore<TextSegment> qwenTextSegmentStore() {
+        return new InMemoryEmbeddingStore<>();
+    }
 
     @Bean//定义：怎么“根据问题找相关内容”
-    public ContentRetriever contentRetriever() {
+    public ContentRetriever contentRetriever(EmbeddingStore<TextSegment> qwenTextSegmentStore) {
         //加载文档
         List<Document> documents =FileSystemDocumentLoader.loadDocuments("src/main/resources/rag");
 
@@ -47,7 +48,14 @@ public class RagConfig {
 //        3. 对每个 TextSegment 应用 transformer
 //        4. 用 embeddingModel 把每个 TextSegment 转成向量
 //        5. 把 TextSegment + 向量 存进 embeddingStore
-        ingestor.ingest(documents);//进行入库器
+        try {
+            if (!documents.isEmpty()) {
+                ingestor.ingest(documents);//进行入库器
+            }
+        } catch (Exception e) {
+            System.err.println("RAG Ingestion failed: " + e.getMessage());
+            System.err.println("Please ensure the Text Embedding service is activated in Aliyun DashScope console.");
+        }
 
         //自定义内容加载器
         EmbeddingStoreContentRetriever contentRetriever=EmbeddingStoreContentRetriever.builder()

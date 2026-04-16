@@ -16,9 +16,9 @@ langchain4j:
         api-key: sk-a5c51f08117e4f8bb6f4177a5f6ce3bf
 
       embedding-model:
-        model-name: text-embedding-v4
+        model-name: text-embedding-v2
         api-key: sk-a5c51f08117e4f8bb6f4177a5f6ce3bf
 
       streaming-chat-model:
         model-name: qwen-max
-        api-key: api-key:sk-a5c51f08117e4f8bb6f4177a5f6ce3bf
+        api-key: sk-a5c51f08117e4f8bb6f4177a5f6ce3bf

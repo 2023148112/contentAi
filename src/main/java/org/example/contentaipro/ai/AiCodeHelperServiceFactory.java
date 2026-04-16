@@ -17,11 +17,10 @@ import org.springframework.context.annotation.Configuration;
 
 public class AiCodeHelperServiceFactory {
     @Resource
-    private ChatModel qwengChatModel;
+    private ChatModel qwenChatModel;
 
     @Resource
     private ContentRetriever contentRetriever;
-    private EmbeddingStore<TextSegment> qwengTextSegmentStore;
 
     @Resource
     private StreamingChatModel qwenStreamingChatModel;
@@ -31,16 +30,13 @@ public class AiCodeHelperServiceFactory {
         //只要接口里有方法，build() 生成的对象就会一起实现。 动态代理生成实现类
         ChatMemory chatMemory=MessageWindowChatMemory.withMaxMessages(10);
         AiCodeService aiCodeService = AiServices.builder(AiCodeService.class)
-                .chatModel(qwengChatModel)
+                .chatModel(qwenChatModel)
                 .streamingChatModel(qwenStreamingChatModel)
                 .chatMemory(chatMemory)
                 .chatMemoryProvider(momoryId->MessageWindowChatMemory.withMaxMessages(10))
                 .contentRetriever(contentRetriever)
                 .build();
         return aiCodeService;
-
-
-       // return AiServices.create(AiCodeService.class,qwengChatModel);
     }
 
 }
