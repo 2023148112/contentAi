@@ -208,12 +208,8 @@ export default {
       const url = `${BASE_URL}/api/myai/chat?memoryId=${chatId}&message=${encodeURIComponent(message)}`
       try {
         const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Accept': 'text/event-stream',
-            'Cache-Control': 'no-cache',
-            'Connection': 'keep-alive'
-          }
+  method: 'GET'
+})
         })
 
         if (!response.ok) {
