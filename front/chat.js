@@ -1,9 +1,11 @@
 export function createChatSSE(memoryId, message, handlers = {}) {
     const { onOpen, onMessage, onDone, onError } = handlers
+    
+    const BASE_URL = 'https://contentai-production-0e73.up.railway.app'
 
-    const url =
-        `http://localhost:8080/chat?memoryId=${encodeURIComponent(memoryId)}` +
-        `&message=${encodeURIComponent(message)}`
+const url =
+  `${BASE_URL}/api/myai/chat?memoryId=${encodeURIComponent(memoryId)}` +
+  `&message=${encodeURIComponent(message)}`
 
     const eventSource = new EventSource(url)
 
