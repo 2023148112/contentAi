@@ -12,7 +12,7 @@ public class AiController {
     @Resource
     private AiCodeService aiCodeService;
 
-    @GetMapping("/chat")
+    @GetMapping(value = "/chat", produces = "text/event-stream;charset=UTF-8")
     public Flux<ServerSentEvent<String>> chat(int memoryId, String message) {
      return aiCodeService.chatStream(memoryId, message).map(chunk-> ServerSentEvent.<String>builder()
              .data(chunk)
