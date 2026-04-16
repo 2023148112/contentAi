@@ -13,11 +13,13 @@ public class AiController {
     private AiCodeService aiCodeService;
 
     @GetMapping(value = "/chat", produces = "text/event-stream;charset=UTF-8")
-    public Flux<ServerSentEvent<String>> chat(int memoryId, String message) {
-     return aiCodeService.chatStream(memoryId, message).map(chunk-> ServerSentEvent.<String>builder()
-             .data(chunk)
-             .build());
-    }
+public Flux<ServerSentEvent<String>> chat(int memoryId, String message) {
+    return aiCodeService.chatStream(memoryId, message)
+            .doOnNext(chunk -> System.out.println("DEBUG: " + chunk))  // 👈 加在这里
+            .map(chunk -> ServerSentEvent.<String>builder()
+                    .data(chunk)
+                    .build());
+}
 
     //Service 返回的通常只是 Flux<String>（普通数据）
     //Controller 才负责变成 SSE 格式（HTTP协议层）
