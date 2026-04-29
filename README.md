@@ -22,19 +22,6 @@ LLM-based generation
 RAG pipeline (retrieval + context injection)
 Server-Sent Events (streaming inference)
 
-System Design (RAG Perspective)
-User Query
-   ↓
-Embedding
-   ↓
-Retriever (Top-K)
-   ↓
-Context Construction
-   ↓
-LLM Generation
-   ↓
-Streaming Output (SSE)
-
 Focus:
 Impact of retrieval quality on generation
 Context construction strategies
